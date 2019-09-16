@@ -11,21 +11,21 @@
 	<groupId>com.aecoplus</groupId>
 	<artifactId>java-8</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>java-8</name>
+	<name>mq</name>
 	<description>rocketmq joah</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<mybatis.plus.version>3.1.0</mybatis.plus.version>
-		<rocket.client.version>4.3.1</rocket.client.version>
-		<!--<rocketmq.version>2.0.3</rocketmq.version>-->
+		<!--<rocket.client.version>4.3.1</rocket.client.version>-->
+		<rocketmq.version>2.0.3</rocketmq.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.rocketmq</groupId>
-			<artifactId>rocketmq-client</artifactId>
-			<version>${rocket.client.version}</version>
+			<artifactId>rocketmq-spring-boot-starter</artifactId>
+			<version>${rocketmq.version}</version>
 		</dependency>
 
 		<dependency>
