@@ -13,6 +13,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user){
-        System.out.println("blog is saved");
+        System.out.println("******consumer message: user is saved");
     }
 }

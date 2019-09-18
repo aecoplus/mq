@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 @Data
 public class ConsumerConfig {
 
-    @Value("")
+    @Value("${name-server}")
     private String namesrvAddr;
-
-    private String groupName;
 }

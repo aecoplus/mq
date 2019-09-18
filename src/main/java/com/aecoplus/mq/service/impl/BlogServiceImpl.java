@@ -13,6 +13,6 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public void saveBlog(Blog blog){
-        System.out.println("blog is saved");
+        System.out.println("******consumer message: blog is saved");
     }
 }
