@@ -9,12 +9,10 @@ import org.springframework.stereotype.Component;
 /**
  * @author aecoplus
  */
-@ConfigurationProperties(prefix="rocketmq.consumer")
-@Component
 @Configuration
 @Data
 public class ConsumerConfig {
 
-    @Value("${name-server}")
+    @Value("${rocketmq.name-server}")
     private String namesrvAddr;
 }

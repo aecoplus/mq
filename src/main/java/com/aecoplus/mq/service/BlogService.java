@@ -7,5 +7,5 @@ import com.aecoplus.mq.entity.Blog;
  */
 public interface BlogService {
 
-    void saveBlog(Blog blog);
+    void saveBlog(String blog);
 }

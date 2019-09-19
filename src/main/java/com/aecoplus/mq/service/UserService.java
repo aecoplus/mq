@@ -8,5 +8,5 @@ import com.aecoplus.mq.entity.User;
  */
 public interface UserService {
 
-    void saveUser(User user);
+    void saveUser(String user);
 }

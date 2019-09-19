@@ -14,21 +14,35 @@ spring:
 
 #consumer
 rocketmq:
+  name-server: 192.168.0.104:9876
   consumer:
-    group-name: java-8
-    #mq的nameserver地址
-    namesev-addr: 192.168.0.104:9876
-    #该消费者订阅的主题和tags("*"号表示订阅该主题下所有的tags),格式：topic~tag1||tag2||tag3;topic2~*;
     consumer-thread-min: 20
     consumer-thread-max: 64
     #设置一次消费消息的条数，默认为1条
     consume-message-batch-max-size: 1
     topics:
-      blog:
-        name: blog
-        consumerGroup: blog
-      user:
-        name: user
-        consumerGroup: user
-
+      sync:
+        name: sync
+        consumerGroup: sync
+      async:
+        name: async
+        consumerGroup: async
+      orderly:
+        name: orderly
+        consumerGroup: orderly
+      oneway:
+        name: oneway
+        consumerGroup: oneway
+      delay:
+        name: delay
+        consumerGroup: delay
+      batch:
+        name: batch
+        consumerGroup: batch
+      filter:
+        name: filter
+        consumerGroup: filter
+      transaction:
+        name: transaction
+        consumerGroup: transaction
 

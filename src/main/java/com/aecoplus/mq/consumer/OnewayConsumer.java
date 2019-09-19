@@ -17,6 +17,8 @@
 
 package com.aecoplus.mq.consumer;
 
+import com.aecoplus.mq.entity.User;
+import com.aecoplus.mq.service.UserService;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.common.UtilAll;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
@@ -24,23 +26,23 @@ import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.apache.rocketmq.spring.core.RocketMQPushConsumerLifecycleListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 
 /**
  * MessageExtConsumer, consume listener impl class.
  */
 @Service
-@RocketMQMessageListener(topic = "message-ext-topic", selectorExpression = "tag1", consumerGroup = "${spring.application.name}-message-ext-consumer")
-public class MessageExtConsumer implements RocketMQListener<MessageExt>, RocketMQPushConsumerLifecycleListener {
-    @Override
-    public void onMessage(MessageExt message) {
-        System.out.printf("------- MessageExtConsumer received message, msgId: %s, body:%s \n", message.getMsgId(), new String(message.getBody()));
-    }
+@RocketMQMessageListener(topic = "${rocketmq.consumer.topics.oneway.name}", consumerGroup = "${rocketmq.consumer.topics.oneway.consumerGroup}")
+public class OnewayConsumer implements RocketMQListener<User> {
+
+    @Autowired
+    private UserService userService;
 
     @Override
-    public void prepareStart(DefaultMQPushConsumer consumer) {
-        // set consumer consume message from now
-        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_TIMESTAMP);
-        consumer.setConsumeTimestamp(UtilAll.timeMillisToHumanString3(System.currentTimeMillis()));
+    public void onMessage(User user) {
+        userService.saveUser(user.toString());
     }
+
 }

@@ -17,15 +17,22 @@
 
 package com.aecoplus.mq.consumer;
 
+import com.aecoplus.mq.entity.User;
+import com.aecoplus.mq.service.UserService;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RocketMQMessageListener(topic = "${demo.rocketmq.transTopic}", consumerGroup = "string_trans_consumer")
-public class StringTransactionalConsumer implements RocketMQListener<String> {
+@RocketMQMessageListener(topic = "${rocketmq.consumer.topics.orderly.name}", consumerGroup = "${rocketmq.consumer.topics.orderly.consumerGroup}")
+public class OrderlyConsumer implements RocketMQListener<User> {
+
+    @Autowired
+    private UserService userService;
+
     @Override
-    public void onMessage(String message) {
-        System.out.printf("------- StringTransactionalConsumer received: %s \n", message);
+    public void onMessage(User user) {
+        userService.saveUser(user.toString());
     }
 }

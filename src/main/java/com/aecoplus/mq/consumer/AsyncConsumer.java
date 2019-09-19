@@ -14,15 +14,15 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-@RocketMQMessageListener(topic = "${rocketmq.consumer.topics.user.name}", consumerGroup = "${rocketmq.consumer.topics.user.consumerGroup}")
-public class UserConsumer implements RocketMQListener<User> {
+@RocketMQMessageListener(topic = "${rocketmq.consumer.topics.async.name}", consumerGroup = "${rocketmq.consumer.topics.async.consumerGroup}")
+public class AsyncConsumer implements RocketMQListener<User> {
 
     @Autowired
     private UserService userService;
 
     @Override
     public void onMessage(User user) {
-        userService.saveUser(user);
+        userService.saveUser(user.toString());
     }
 
 }
